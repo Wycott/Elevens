@@ -1,2 +1,2 @@
 # Elevens
-Replatform ElevensSolitaireOddsCheck
+Replatform ElevensSolitaireOddsCheck onto .NET6
