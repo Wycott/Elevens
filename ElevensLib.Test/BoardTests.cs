@@ -1,4 +1,3 @@
-using System.Net.WebSockets;
 using Xunit;
 
 namespace ElevensLib.Test

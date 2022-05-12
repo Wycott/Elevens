@@ -41,6 +41,7 @@ namespace ElevensRig
             if (optionName == string.Empty)
             {
                 DisplayUsage();
+
                 return;
             }
 
