@@ -2,9 +2,9 @@ name: .NET
 
 on:
   push:
-    branches: 'Elevens/**'
+    paths: 'Elevens/**'
   pull_request:
-    branches: 'Elevens/**'
+    paths: 'Elevens/**'
 
 jobs:
   build:
