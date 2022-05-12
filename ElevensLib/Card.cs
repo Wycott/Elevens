@@ -13,7 +13,7 @@ namespace ElevensLib
         public string Name => DecodeRank(Rank) + DecodeSuit(Suit);
         public int Suit { private get; set; }
         public int Rank { get; set; }
-        public string Identity { get; set; }
+        public string? Identity { get; set; }
 
         private static string DecodeRank(int rank)
         {
