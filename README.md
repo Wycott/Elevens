@@ -1,0 +1,2 @@
+# Elevens
+Replatform ElevensSolitaireOddsCheck
