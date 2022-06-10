@@ -12,9 +12,9 @@ namespace ElevensLib
     {
         private int Iterations { get; }
 
-        private char Option { get; }
+        private string Option { get; }
 
-        public Session(int iterations, char option)
+        public Session(int iterations, string option)
         {
             Iterations = iterations;
             Option = option;

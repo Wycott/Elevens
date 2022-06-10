@@ -14,10 +14,10 @@ namespace ElevensLib
 
         private List<Card> Deck { get; set; }
         private readonly Card[] theBoard = new Card[NumberOfCells];
-        private char Option { get; }
+        private string Option { get; }
         private bool ChooseNumbers { get; set; }
 
-        public Board(char option)
+        public Board(string option)
         {
             Option = option;
             Deck = new List<Card>();
@@ -75,14 +75,14 @@ namespace ElevensLib
 
             switch (Option)
             {
-                case 'P':
+                case "P":
                     var retVal1 = AnalysePictures();
                     if (!retVal1)
                     {
                         AnalyseNumbers();
                     }
                     break;
-                case 'N':
+                case "N":
                     var retVal2 = AnalyseNumbers();
                     if (!retVal2)
                     {
@@ -114,7 +114,7 @@ namespace ElevensLib
 
         public void DumpBoard()
         {
-            if (Option != 'T') return;
+            if (Option != "T") return;
 
             for (var c = 0; c < NumberOfCells; c++)
             {

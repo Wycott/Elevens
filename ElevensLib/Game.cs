@@ -11,9 +11,9 @@ namespace ElevensLib
     public class Game
     {
         private Board GameBoard { get; }
-        private char Option { get; }
+        private string Option { get; }
 
-        public Game(char option)
+        public Game(string option)
         {
             Option = option;
             GameBoard = new Board(Option);

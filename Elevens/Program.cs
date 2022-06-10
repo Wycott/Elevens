@@ -21,24 +21,27 @@ namespace ElevensRig
             var lo = int.MaxValue;
             var sw = new Stopwatch();
             sw.Start();
-            var option = Convert.ToChar(args[1].ToUpper());
+            var option = args[1].ToUpper();
             var optionName = string.Empty;
-            var drawsPerRound = Convert.ToInt32(args[0]);
+
+            //var drawsPerRound = Convert.ToInt32(args[0]);
+
+            bool gotDrawsPerRound = int.TryParse(args[0], out int drawsPerRound);
 
             switch (option)
             {
-                case 'N':
+                case "N":
                     optionName = "Numbers";
                     break;
-                case 'P':
+                case "P":
                     optionName = "Pictures";
                     break;
-                case 'T':
+                case "T":
                     optionName = "Alternating";
                     break;
             }
 
-            if (optionName == string.Empty)
+            if (optionName == string.Empty || !gotDrawsPerRound)
             {
                 DisplayUsage();
 
@@ -54,7 +57,7 @@ namespace ElevensRig
 
                 var avgWins = Convert.ToInt32(totalWins / iterations);
 
-                if (avgWins <= best && option != 'T') continue;
+                if (avgWins <= best && option != "T") continue;
 
                 if (newWin > hi)
                 {
@@ -78,7 +81,7 @@ namespace ElevensRig
                 WriteLine($"Prefer             : {optionName}");
                 WriteLine(new string('-', 80));
 
-                if (option == 'T')
+                if (option == "T")
                     break;
             }
             // ReSharper disable once FunctionNeverReturns
@@ -92,6 +95,8 @@ namespace ElevensRig
             WriteLine("\t\tElevensRig.exe 100 P");
             WriteLine("\t\tElevensRig.exe 50 N");
             WriteLine("\t\tElevensRig.exe 10 T");
+            WriteLine();
+            WriteLine("Suggest using at least 10 games for modes N & P");
         }
     }
 }

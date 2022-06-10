@@ -8,7 +8,7 @@ namespace ElevensLib.Test
         public void Board_WhenCreate_ThenNoErrorShouldBeThrown()
         {
             // Arrange
-            var board = new Board('T');
+            var board = new Board("T");
 
             // Act 
 
