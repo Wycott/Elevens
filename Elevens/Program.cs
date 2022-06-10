@@ -11,6 +11,7 @@ namespace ElevensRig
             if (args.Length != 2)
             {
                 DisplayUsage();
+
                 return;
             }
 
@@ -22,9 +23,7 @@ namespace ElevensRig
             var sw = new Stopwatch();
             sw.Start();
             var option = args[1].ToUpper();
-            var optionName = string.Empty;
-
-            //var drawsPerRound = Convert.ToInt32(args[0]);
+            var optionName = string.Empty;            
 
             bool gotDrawsPerRound = int.TryParse(args[0], out int drawsPerRound);
 
@@ -83,8 +82,7 @@ namespace ElevensRig
 
                 if (option == "T")
                     break;
-            }
-            // ReSharper disable once FunctionNeverReturns
+            }            
         }
 
         private static void DisplayUsage()

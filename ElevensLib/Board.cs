@@ -5,6 +5,7 @@ All rights reserved.
 This source code is licensed under the BSD-style license found in the
 LICENSE file in the root directory of this source tree. 
 */
+using static System.Console;
 
 namespace ElevensLib
 {
@@ -118,17 +119,17 @@ namespace ElevensLib
 
             for (var c = 0; c < NumberOfCells; c++)
             {
-                Console.Write($"[{theBoard[c].Name}]");
+                Write($"[{theBoard[c].Name}]");
 
                 if ((c + 1) % 3 == 0)
                 {
-                    Console.WriteLine();
+                    WriteLine();
                 }
             }
 
-            Console.WriteLine();
-            Console.WriteLine($"{Deck.Count} cards left");
-            Console.WriteLine();
+            WriteLine();
+            WriteLine($"{Deck.Count} cards left");
+            WriteLine();
         }
 
         private bool AnalyseNumbers()
