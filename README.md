@@ -20,12 +20,13 @@ Two positional parameters are supported:
 
 Example:
 
+```
 ElevensRig.exe 100 P
 
 ElevensRig.exe 5000 N
 
 ElevensRig.exe 250 T
-
+```
 ## Modes
 
 P - Picture cards are checked first
@@ -36,6 +37,6 @@ T - Test mode. See the game being played. Stops at the end of the iteration. Alt
 
 N.B. modes P & N run forever. Press CTRL-C to stop.
 
-_Last updated: 14 May 2022_
+_Last updated: 10 June 2022_
 
 
