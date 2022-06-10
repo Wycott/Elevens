@@ -66,8 +66,9 @@ namespace ElevensLib
         private Card? DealCard()
         {
             if (Deck.Count <= 0)
-                return default;
-                //return new Card { Rank = 0, Suit = 0 };
+            { 
+                return default; 
+            }
 
             var boardCard = Deck[0];
             Deck.RemoveAt(0);

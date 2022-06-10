@@ -30,10 +30,7 @@ namespace ElevensLib
                 case 13:
                     return "K";
                 default:
-                    if (rank == 0)
-                        throw new ArgumentException();
-                    else
-                        return rank.ToString();
+                    return rank.ToString();
             }
         }
 
