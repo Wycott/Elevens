@@ -89,9 +89,9 @@ namespace ElevensRig
             WriteLine();
             WriteLine("Expected 2 parameters:");
             WriteLine("\t1) Number of games for each iteration and 2) The mode (P, N or T) e.g.");
-            WriteLine("\t\tSolitaireEngine.exe 100 P");
-            WriteLine("\t\tSolitaireEngine.exe 50 N");
-            WriteLine("\t\tSolitaireEngine.exe 10 T");
+            WriteLine("\t\tElevensRig.exe 100 P");
+            WriteLine("\t\tElevensRig.exe 50 N");
+            WriteLine("\t\tElevensRig.exe 10 T");
         }
     }
 }
