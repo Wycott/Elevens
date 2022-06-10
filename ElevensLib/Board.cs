@@ -56,13 +56,18 @@ namespace ElevensLib
         {
             for (var b = 0; b < NumberOfCells; b++)
             {
-                theBoard[b] = DealCard();
+                var cardToPlay = DealCard();
+
+                if (cardToPlay != null)
+                    theBoard[b] = cardToPlay;
             }
         }
 
-        private Card DealCard()
+        private Card? DealCard()
         {
-            if (Deck.Count <= 0) return new Card { Rank = 0, Suit = 0 };
+            if (Deck.Count <= 0)
+                return default;
+                //return new Card { Rank = 0, Suit = 0 };
 
             var boardCard = Deck[0];
             Deck.RemoveAt(0);
@@ -223,7 +228,9 @@ namespace ElevensLib
 
         private void DealCardAtPosition(int pos)
         {
-            theBoard[pos] = DealCard();
+            var newCard = DealCard();
+            if (newCard != null)
+                theBoard[pos] = newCard;
         }
     }
 }

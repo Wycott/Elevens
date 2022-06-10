@@ -8,6 +8,7 @@ namespace ElevensRig
     {
         private static void Main(string[] args)
         {
+            Console.Clear();
             if (args.Length != 2)
             {
                 DisplayUsage();
@@ -47,6 +48,15 @@ namespace ElevensRig
                 return;
             }
 
+            if (optionName == "Numbers" || optionName == "Pictures")
+            {
+                Console.WriteLine("WARNING: This mode runs forever!");
+                Console.WriteLine("New output will only be displayed if the average number of games won per iteration changes.");
+                Console.WriteLine("Press any key to continue or CTRL-C to exit");
+                Console.ReadKey(true);
+                Console.WriteLine("");
+            }
+           
             while (true)
             {
                 iterations++;

@@ -30,7 +30,10 @@ namespace ElevensLib
                 case 13:
                     return "K";
                 default:
-                    return rank.ToString();
+                    if (rank == 0)
+                        throw new ArgumentException();
+                    else
+                        return rank.ToString();
             }
         }
 
@@ -39,13 +42,13 @@ namespace ElevensLib
             switch (suit)
             {
                 case 1:
-                    return "H";
+                    return "♥";
                 case 2:
-                    return "C";
+                    return "♣";
                 case 3:
-                    return "D";
+                    return "♦";
                 default:
-                    return "S";
+                    return "♠";
             }
         }
     }
