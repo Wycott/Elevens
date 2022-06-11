@@ -29,13 +29,13 @@ namespace ElevensRig
             var best = 0;
             var hi = int.MinValue;
             var lo = int.MaxValue;
-            var option = args[1].ToUpper();
+            var modeOption = args[1].ToUpper();
 
             MovePreference movePreference = MovePreference.Unknown;
 
             bool gotDrawsPerRound = int.TryParse(args[0], out int drawsPerRound);
 
-            switch (option)
+            switch (modeOption)
             {
                 case "N":
                     movePreference = MovePreference.Numbers;
@@ -91,7 +91,7 @@ namespace ElevensRig
 
                 DisplayHelper.ShowStats(avgWins, drawsPerRound, hi, lo, sw.ElapsedMilliseconds, iterations, newWin, movePreference);
 
-                if (option == "T")
+                if (movePreference == MovePreference.Alternating)
                 { 
                     break;
                 }
