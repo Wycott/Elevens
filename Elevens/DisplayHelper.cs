@@ -32,8 +32,8 @@ namespace ElevensRig
             WriteLine("New output will only be displayed if the average number of games won per iteration changes.");
             WriteLine("Press any key to continue or CTRL-C to exit");
             ReadKey(true);
-            WriteLine("");
-        }        
+            WriteLine();
+        }
 
         internal static void ShowUsage()
         {

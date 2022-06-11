@@ -24,12 +24,13 @@ namespace ElevensRig
                 return;
             }
 
-            long totalWins = 0;
-            long iterations = 0;
+            var totalWins = 0;
+            var iterations = 0;
             var best = 0;
             var hi = int.MinValue;
             var lo = int.MaxValue;
             var option = args[1].ToUpper();
+
             MovePreference movePreference = MovePreference.Unknown;
 
             bool gotDrawsPerRound = int.TryParse(args[0], out int drawsPerRound);
@@ -71,7 +72,10 @@ namespace ElevensRig
 
                 var avgWins = Convert.ToInt32(totalWins / iterations);
 
-                if (avgWins <= best && option != "T") continue;
+                if (avgWins <= best && option != "T")
+                {
+                    continue;
+                }
 
                 if (newWin > hi)
                 {
@@ -88,7 +92,9 @@ namespace ElevensRig
                 DisplayHelper.ShowStats(avgWins, drawsPerRound, hi, lo, sw.ElapsedMilliseconds, iterations, newWin, movePreference);
 
                 if (option == "T")
+                { 
                     break;
+                }
             }
         }
     }
