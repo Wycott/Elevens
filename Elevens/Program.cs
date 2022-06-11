@@ -72,7 +72,7 @@ namespace ElevensRig
 
                 var avgWins = Convert.ToInt32(totalWins / iterations);
 
-                if (avgWins <= best && option != "T")
+                if (avgWins <= best && movePreference != MovePreference.Alternating)
                 {
                     continue;
                 }

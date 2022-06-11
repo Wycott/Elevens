@@ -29,7 +29,7 @@ namespace ElevensRig
         internal static void ShowWarning()
         {
             WriteLine("WARNING: This mode runs forever!");
-            WriteLine("New output will only be displayed if the average number of games won per iteration changes.");
+            WriteLine("New output will only be displayed if the average number of games won per iteration increases.");
             WriteLine("Press any key to continue or CTRL-C to exit");
             ReadKey(true);
             WriteLine();
