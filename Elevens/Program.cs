@@ -1,6 +1,5 @@
 ﻿using System.Diagnostics;
 using ElevensLib;
-using static System.Console;
 
 namespace ElevensRig
 {
@@ -9,10 +8,10 @@ namespace ElevensRig
         private static void Main(string[] args)
         {
             Console.Clear();
+
             if (args.Length != 2)
             {
-                DisplayUsage();
-
+                DisplayHelper.ShowUsage();
                 return;
             }
 
@@ -21,10 +20,8 @@ namespace ElevensRig
             var best = 0;
             var hi = int.MinValue;
             var lo = int.MaxValue;
-            var sw = new Stopwatch();
-            sw.Start();
             var option = args[1].ToUpper();
-            var optionName = string.Empty;            
+            var optionName = string.Empty;
 
             bool gotDrawsPerRound = int.TryParse(args[0], out int drawsPerRound);
 
@@ -43,20 +40,18 @@ namespace ElevensRig
 
             if (optionName == string.Empty || !gotDrawsPerRound)
             {
-                DisplayUsage();
+                DisplayHelper.ShowUsage();
 
                 return;
             }
 
             if (optionName == "Numbers" || optionName == "Pictures")
             {
-                Console.WriteLine("WARNING: This mode runs forever!");
-                Console.WriteLine("New output will only be displayed if the average number of games won per iteration changes.");
-                Console.WriteLine("Press any key to continue or CTRL-C to exit");
-                Console.ReadKey(true);
-                Console.WriteLine("");
+                DisplayHelper.ShowWarning();
             }
-           
+
+            var sw = new Stopwatch();
+            sw.Start();
             while (true)
             {
                 iterations++;
@@ -80,31 +75,11 @@ namespace ElevensRig
 
                 best = avgWins;
 
-                WriteLine($"Avg. number of wins: {avgWins}");
-                WriteLine($"Deals per round    : {drawsPerRound}");
-                WriteLine($"Best               : {hi}");
-                WriteLine($"Worst              : {lo}");
-                WriteLine($"After              : {sw.ElapsedMilliseconds / 1000} seconds");
-                WriteLine($"Iterations         : {iterations}");
-                WriteLine($"Last win           : {newWin}");
-                WriteLine($"Prefer             : {optionName}");
-                WriteLine(new string('-', 80));
+                DisplayHelper.ShowStats(avgWins, drawsPerRound, hi, lo, sw.ElapsedMilliseconds, iterations, newWin, optionName);
 
                 if (option == "T")
                     break;
-            }            
-        }
-
-        private static void DisplayUsage()
-        {
-            WriteLine();
-            WriteLine("Expected 2 parameters:");
-            WriteLine("\t1) Number of games for each iteration and 2) The mode (P, N or T) e.g.");
-            WriteLine("\t\tElevensRig.exe 100 P");
-            WriteLine("\t\tElevensRig.exe 50 N");
-            WriteLine("\t\tElevensRig.exe 10 T");
-            WriteLine();
-            WriteLine("Suggest using at least 10 games for modes N & P");
+            }
         }
     }
 }
