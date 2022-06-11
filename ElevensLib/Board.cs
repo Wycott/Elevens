@@ -1,5 +1,5 @@
 ﻿/*
-Copyright (c) 2021, Rob Docherty
+Copyright (c) 2021-2022, Rob Docherty
 All rights reserved.
 
 This source code is licensed under the BSD-style license found in the
@@ -15,12 +15,12 @@ namespace ElevensLib
 
         private List<Card> Deck { get; set; }
         private readonly Card[] theBoard = new Card[NumberOfCells];
-        private string Option { get; }
+        private MovePreference MovePreference { get; }
         private bool ChooseNumbers { get; set; }
 
-        public Board(string option)
+        public Board(MovePreference movePreference)
         {
-            Option = option;
+            MovePreference = movePreference;
             Deck = new List<Card>();
             Init();
         }
@@ -80,16 +80,16 @@ namespace ElevensLib
         {
             DumpBoard();
 
-            switch (Option)
+            switch (MovePreference)
             {
-                case "P":
+                case MovePreference.Pictures:
                     var retVal1 = AnalysePictures();
                     if (!retVal1)
                     {
                         AnalyseNumbers();
                     }
                     break;
-                case "N":
+                case MovePreference.Numbers:
                     var retVal2 = AnalyseNumbers();
                     if (!retVal2)
                     {
@@ -121,7 +121,7 @@ namespace ElevensLib
 
         public void DumpBoard()
         {
-            if (Option != "T") return;
+            if (MovePreference != MovePreference.Alternating) return;
 
             for (var c = 0; c < NumberOfCells; c++)
             {

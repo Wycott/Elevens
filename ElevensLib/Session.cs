@@ -1,5 +1,5 @@
 ﻿/*
-Copyright (c) 2021, Rob Docherty
+Copyright (c) 2021-2022, Rob Docherty
 All rights reserved.
 
 This source code is licensed under the BSD-style license found in the
@@ -12,12 +12,12 @@ namespace ElevensLib
     {
         private int Iterations { get; }
 
-        private string Option { get; }
+        private MovePreference MovePreference { get; }
 
-        public Session(int iterations, string option)
+        public Session(int iterations, MovePreference movePreference)
         {
             Iterations = iterations;
-            Option = option;
+            MovePreference = movePreference;
         }
 
         public int Start()
@@ -26,7 +26,7 @@ namespace ElevensLib
 
             for (var i = 0; i < Iterations; i++)
             {
-                var g = new Game(Option);
+                var g = new Game(MovePreference);
                 var res = g.Play();
 
                 if (res)

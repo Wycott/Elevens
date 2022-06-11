@@ -1,15 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿/*
+Copyright (c) 2021-2022, Rob Docherty
+All rights reserved.
+
+This source code is licensed under the BSD-style license found in the
+LICENSE file in the root directory of this source tree. 
+*/
+
 using static System.Console;
+using ElevensLib;
 
 namespace ElevensRig
 {
     internal static class DisplayHelper
     {
-        internal static void ShowStats(int avgWins, int drawsPerRound, int hi, int lo, long elapsedMilliseconds, long iterations, int newWin, string? optionName)
+        internal static void ShowStats(int avgWins, int drawsPerRound, int hi, int lo, long elapsedMilliseconds, long iterations, int newWin, MovePreference movePreference)
         {
             WriteLine($"Avg. number of wins: {avgWins}");
             WriteLine($"Deals per round    : {drawsPerRound}");
@@ -18,7 +22,7 @@ namespace ElevensRig
             WriteLine($"After              : {elapsedMilliseconds / 1000} seconds");
             WriteLine($"Iterations         : {iterations}");
             WriteLine($"Last win           : {newWin}");
-            WriteLine($"Prefer             : {optionName}");
+            WriteLine($"Prefer             : {movePreference}");
             WriteLine(new string('-', 80));
         }
 

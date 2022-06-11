@@ -1,4 +1,12 @@
-﻿using System.Diagnostics;
+﻿/*
+Copyright (c) 2021-2022, Rob Docherty
+All rights reserved.
+
+This source code is licensed under the BSD-style license found in the
+LICENSE file in the root directory of this source tree. 
+*/
+
+using System.Diagnostics;
 using ElevensLib;
 
 namespace ElevensRig
@@ -12,6 +20,7 @@ namespace ElevensRig
             if (args.Length != 2)
             {
                 DisplayHelper.ShowUsage();
+
                 return;
             }
 
@@ -21,41 +30,42 @@ namespace ElevensRig
             var hi = int.MinValue;
             var lo = int.MaxValue;
             var option = args[1].ToUpper();
-            var optionName = string.Empty;
+            MovePreference movePreference = MovePreference.Unknown;
 
             bool gotDrawsPerRound = int.TryParse(args[0], out int drawsPerRound);
 
             switch (option)
             {
                 case "N":
-                    optionName = "Numbers";
+                    movePreference = MovePreference.Numbers;
                     break;
                 case "P":
-                    optionName = "Pictures";
+                    movePreference = MovePreference.Pictures;
                     break;
                 case "T":
-                    optionName = "Alternating";
+                    movePreference = MovePreference.Alternating;
                     break;
             }
 
-            if (optionName == string.Empty || !gotDrawsPerRound)
+            if (movePreference == MovePreference.Unknown || !gotDrawsPerRound)
             {
                 DisplayHelper.ShowUsage();
 
                 return;
             }
 
-            if (optionName == "Numbers" || optionName == "Pictures")
+            if (movePreference == MovePreference.Numbers || movePreference == MovePreference.Pictures)
             {
                 DisplayHelper.ShowWarning();
             }
 
             var sw = new Stopwatch();
             sw.Start();
+
             while (true)
             {
                 iterations++;
-                var s = new Session(drawsPerRound, option);
+                var s = new Session(drawsPerRound, movePreference);
                 var newWin = s.Start();
                 totalWins += newWin;
 
@@ -75,7 +85,7 @@ namespace ElevensRig
 
                 best = avgWins;
 
-                DisplayHelper.ShowStats(avgWins, drawsPerRound, hi, lo, sw.ElapsedMilliseconds, iterations, newWin, optionName);
+                DisplayHelper.ShowStats(avgWins, drawsPerRound, hi, lo, sw.ElapsedMilliseconds, iterations, newWin, movePreference);
 
                 if (option == "T")
                     break;

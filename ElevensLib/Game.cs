@@ -1,5 +1,5 @@
 ﻿/*
-Copyright (c) 2021, Rob Docherty
+Copyright (c) 2021-2022, Rob Docherty
 All rights reserved.
 
 This source code is licensed under the BSD-style license found in the
@@ -11,12 +11,12 @@ namespace ElevensLib
     public class Game
     {
         private Board GameBoard { get; }
-        private string Option { get; }
+        private MovePreference MovePreference { get; }
 
-        public Game(string option)
+        public Game(MovePreference movePreference)
         {
-            Option = option;
-            GameBoard = new Board(Option);
+            MovePreference = movePreference;
+            GameBoard = new Board(MovePreference);
         }
 
         public bool Play()

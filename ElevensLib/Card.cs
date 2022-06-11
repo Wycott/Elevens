@@ -1,5 +1,5 @@
 ﻿/*
-Copyright (c) 2021, Rob Docherty
+Copyright (c) 2021-2022, Rob Docherty
 All rights reserved.
 
 This source code is licensed under the BSD-style license found in the
