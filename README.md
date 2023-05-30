@@ -38,6 +38,8 @@ T - Test mode. See the game being played. Stops at the end of the iteration. Alt
 
 **N.B. modes P & N run forever!** Press CTRL-C to stop. Suggest using at least 10 games for each of these modes.
 
+---
+
 _Last updated: 10 June 2022_
 
 
