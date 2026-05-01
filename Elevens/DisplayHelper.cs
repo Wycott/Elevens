@@ -15,14 +15,17 @@ namespace ElevensRig
     {
         internal static void ShowStats(int avgWins, int drawsPerRound, int hi, int lo, long elapsedMilliseconds, long iterations, int newWin, MovePreference movePreference)
         {
-            WriteLine($"Avg. number of wins: {avgWins}");
-            WriteLine($"Deals per round    : {drawsPerRound}");
-            WriteLine($"Best               : {hi}");
-            WriteLine($"Worst              : {lo}");
-            WriteLine($"After              : {elapsedMilliseconds / 1000} seconds");
-            WriteLine($"Iterations         : {iterations}");
-            WriteLine($"Last win           : {newWin}");
-            WriteLine($"Prefer             : {movePreference}");
+            var avgWinPct = drawsPerRound > 0 ? (avgWins / (double)drawsPerRound) * 100.0 : 0.0;
+
+            WriteLine($"Avg. no of wins : {avgWins}");
+            WriteLine($"Deals per round : {drawsPerRound}");
+            WriteLine($"Avg. win %age   : {avgWinPct:F2}%");
+            WriteLine($"Best            : {hi}");
+            WriteLine($"Worst           : {lo}");
+            WriteLine($"After           : {elapsedMilliseconds / 1000} seconds");
+            WriteLine($"Iterations      : {iterations}");
+            WriteLine($"Last win        : {newWin}");
+            WriteLine($"Prefer          : {movePreference}");
             WriteLine(new string('-', 80));
         }
 
