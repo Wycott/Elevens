@@ -21,7 +21,7 @@ namespace ElevensLib
         public Board(MovePreference movePreference)
         {
             MovePreference = movePreference;
-            Deck = new List<Card>();
+            Deck = [];
             Init();
         }
 
@@ -41,13 +41,14 @@ namespace ElevensLib
         private void MakeDeck()
         {
             var shuffler = new List<Card>();
+
             for (var currentSuit = 0; currentSuit < 4; currentSuit++)
             {
                 for (var currentRank = 1; currentRank < 14; currentRank++)
                 {
                     var newCard = new Card() { Rank = currentRank, Suit = currentSuit, Identity = Guid.NewGuid().ToString() };
                     shuffler.Add(newCard);
-                    Deck = shuffler.OrderBy(x => x.Identity).ToList();
+                    Deck = [.. shuffler.OrderBy(x => x.Identity)];
                 }
             }
         }
@@ -59,7 +60,9 @@ namespace ElevensLib
                 var cardToPlay = DealCard();
 
                 if (cardToPlay != null)
+                {
                     theBoard[b] = cardToPlay;
+                }
             }
         }
 
@@ -67,7 +70,7 @@ namespace ElevensLib
         {
             if (Deck.Count <= 0)
             { 
-                return default; 
+                return null; 
             }
 
             var boardCard = Deck[0];
@@ -121,7 +124,10 @@ namespace ElevensLib
 
         public void DumpBoard()
         {
-            if (MovePreference != MovePreference.Alternating) return;
+            if (MovePreference != MovePreference.Alternating)
+            {
+                return;
+            }
 
             for (var c = 0; c < NumberOfCells; c++)
             {
@@ -146,17 +152,29 @@ namespace ElevensLib
             {
                 var rank = theBoard[b].Rank;
 
-                if (rank >= 11) continue;
+                if (rank >= 11)
+                {
+                    continue;
+                }
 
                 for (var o = 0; o < NumberOfCells; o++)
                 {
-                    if (o == b) continue;
+                    if (o == b)
+                    {
+                        continue;
+                    }
 
                     var otherRank = theBoard[o].Rank;
 
-                    if (otherRank >= 11) continue;
+                    if (otherRank >= 11)
+                    {
+                        continue;
+                    }
 
-                    if (rank + otherRank != 11) continue;
+                    if (rank + otherRank != 11)
+                    {
+                        continue;
+                    }
 
                     DealCardAtPosition(o);
                     DealCardAtPosition(b);
@@ -231,7 +249,9 @@ namespace ElevensLib
         {
             var newCard = DealCard();
             if (newCard != null)
+            {
                 theBoard[pos] = newCard;
+            }
         }
     }
 }

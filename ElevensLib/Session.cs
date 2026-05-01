@@ -8,17 +8,11 @@ LICENSE file in the root directory of this source tree.
 
 namespace ElevensLib
 {
-    public class Session
+    public class Session(int iterations, MovePreference movePreference)
     {
-        private int Iterations { get; }
+        private int Iterations { get; } = iterations;
 
-        private MovePreference MovePreference { get; }
-
-        public Session(int iterations, MovePreference movePreference)
-        {
-            Iterations = iterations;
-            MovePreference = movePreference;
-        }
+        private MovePreference MovePreference { get; } = movePreference;
 
         public int Start()
         {

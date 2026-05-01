@@ -17,36 +17,26 @@ namespace ElevensLib
 
         private static string DecodeRank(int rank)
         {
-            switch (rank)
+            return rank switch
             {
-                case 1:
-                    return "A";
-                case 10:
-                    return "T";
-                case 11:
-                    return "J";
-                case 12:
-                    return "Q";
-                case 13:
-                    return "K";
-                default:
-                    return rank.ToString();
-            }
+                1 => "A",
+                10 => "T",
+                11 => "J",
+                12 => "Q",
+                13 => "K",
+                _ => rank.ToString()
+            };
         }
 
         private static string DecodeSuit(int suit)
         {
-            switch (suit)
+            return suit switch
             {
-                case 1:
-                    return "♥";
-                case 2:
-                    return "♣";
-                case 3:
-                    return "♦";
-                default:
-                    return "♠";
-            }
+                1 => "♥",
+                2 => "♣",
+                3 => "♦",
+                _ => "♠"
+            };
         }
     }
 }

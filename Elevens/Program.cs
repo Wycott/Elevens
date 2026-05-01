@@ -31,22 +31,17 @@ namespace ElevensRig
             var lo = int.MaxValue;
             var modeOption = args[1].ToUpper();
 
-            MovePreference movePreference = MovePreference.Unknown;
+            var movePreference = MovePreference.Unknown;
 
-            bool gotDrawsPerRound = int.TryParse(args[0], out int drawsPerRound);
+            var gotDrawsPerRound = int.TryParse(args[0], out var drawsPerRound);
 
-            switch (modeOption)
+            movePreference = modeOption switch
             {
-                case "N":
-                    movePreference = MovePreference.Numbers;
-                    break;
-                case "P":
-                    movePreference = MovePreference.Pictures;
-                    break;
-                case "T":
-                    movePreference = MovePreference.Alternating;
-                    break;
-            }
+                "N" => MovePreference.Numbers,
+                "P" => MovePreference.Pictures,
+                "T" => MovePreference.Alternating,
+                _ => movePreference
+            };
 
             if (movePreference == MovePreference.Unknown || !gotDrawsPerRound)
             {
@@ -92,7 +87,7 @@ namespace ElevensRig
                 DisplayHelper.ShowStats(avgWins, drawsPerRound, hi, lo, sw.ElapsedMilliseconds, iterations, newWin, movePreference);
 
                 if (movePreference == MovePreference.Alternating)
-                { 
+                {
                     break;
                 }
             }
