@@ -40,16 +40,18 @@ namespace ElevensLib
 
         private void MakeDeck()
         {
-            var shuffler = new List<Card>();
+            Deck = new List<Card>(52);
 
             for (var currentSuit = 0; currentSuit < 4; currentSuit++)
-            {
                 for (var currentRank = 1; currentRank < 14; currentRank++)
-                {
-                    var newCard = new Card() { Rank = currentRank, Suit = currentSuit, Identity = Guid.NewGuid().ToString() };
-                    shuffler.Add(newCard);
-                    Deck = [.. shuffler.OrderBy(x => x.Identity)];
-                }
+                    Deck.Add(new Card { Rank = currentRank, Suit = currentSuit });
+
+            // Fisher-Yates shuffle — O(n) instead of O(n²)
+            var rng = Random.Shared;
+            for (var i = Deck.Count - 1; i > 0; i--)
+            {
+                var j = rng.Next(i + 1);
+                (Deck[i], Deck[j]) = (Deck[j], Deck[i]);
             }
         }
 
@@ -68,20 +70,24 @@ namespace ElevensLib
 
         private Card? DealCard()
         {
-            if (Deck.Count <= 0)
-            { 
-                return null; 
+            if (Deck.Count == 0)
+            {
+                return null;
             }
 
-            var boardCard = Deck[0];
-            Deck.RemoveAt(0);
-
-            return boardCard;
+            // Remove from end — O(1) instead of O(n)
+            var last = Deck.Count - 1;
+            var card = Deck[last];
+            Deck.RemoveAt(last);
+            return card;
         }
 
         private void FindNextMove()
         {
-            DumpBoard();
+            if (MovePreference == MovePreference.Alternating)
+            {
+                DumpBoard();
+            }
 
             switch (MovePreference)
             {
@@ -157,13 +163,9 @@ namespace ElevensLib
                     continue;
                 }
 
-                for (var o = 0; o < NumberOfCells; o++)
+                // Start at b+1 to avoid processing each pair twice
+                for (var o = b + 1; o < NumberOfCells; o++)
                 {
-                    if (o == b)
-                    {
-                        continue;
-                    }
-
                     var otherRank = theBoard[o].Rank;
 
                     if (otherRank >= 11)
@@ -188,42 +190,26 @@ namespace ElevensLib
 
         private bool AnalysePictures()
         {
-            var jacks = 0;
-            var queens = 0;
-            var kings = 0;
+            int jacks = 0, queens = 0, kings = 0;
 
-            var retVal = false;
-
-            for (var i = 11; i < 14; i++)
+            // Single pass instead of three separate LINQ scans
+            foreach (var card in theBoard)
             {
-                var suitCount = theBoard.Count(x => x.Rank == i);
-
-                switch (i)
-                {
-                    case 11:
-                        jacks = suitCount;
-                        break;
-                    case 12:
-                        queens = suitCount;
-                        break;
-                    case 13:
-                        kings = suitCount;
-                        break;
-                }
-
-                if (jacks <= 0 || queens <= 0 || kings <= 0)
-                {
-                    continue;
-                }
-
-                DealOverRank(11, 1);
-                DealOverRank(12, 1);
-                DealOverRank(13, 1);
-
-                retVal = true;
+                if (card.Rank == 11) jacks++;
+                else if (card.Rank == 12) queens++;
+                else if (card.Rank == 13) kings++;
             }
 
-            return retVal;
+            if (jacks == 0 || queens == 0 || kings == 0)
+            {
+                return false;
+            }
+
+            DealOverRank(11, 1);
+            DealOverRank(12, 1);
+            DealOverRank(13, 1);
+
+            return true;
         }
 
         private void DealOverRank(int rank, int times)
