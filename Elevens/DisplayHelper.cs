@@ -38,7 +38,7 @@ namespace ElevensRig
             WriteLine();
         }
 
-        // TODO: Make THIS neater.
+        // TODO: Make THIS neater
         internal static void ShowUsage()
         {
             WriteLine();
