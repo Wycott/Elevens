@@ -29,6 +29,7 @@ namespace ElevensRig
             WriteLine(new string('-', 80));
         }
 
+        // TODO: Make this neater
         internal static void ShowWarning()
         {
             WriteLine("WARNING: This mode runs forever!");
