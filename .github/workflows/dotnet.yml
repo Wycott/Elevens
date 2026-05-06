@@ -1,12 +1,8 @@
 name: CI
 
 on: 
-  pull_request:
-    branches:
-      - main
   push:
-    branches:
-      - '**'
+  pull_request:
 
 env:
   SOLUTION_FILE: $Env:GITHUB_WORKSPACE\Elevens.sln
@@ -14,6 +10,10 @@ env:
 jobs:
   build:
     runs-on: [windows-latest]
+    
+    # Skip push builds when the commit is part of an open PR
+    if: github.event_name == 'pull_request' || github.event.pull_request == null
+    
     steps:
         
       - name: Checkout
